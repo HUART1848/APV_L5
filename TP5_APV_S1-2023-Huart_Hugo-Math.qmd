@@ -1,0 +1,40 @@
+---
+title: "APV - TP5 : Naïve Bayes Classifier"
+author: "Hugo Huart"
+format:
+    pdf:
+        #fontfamily: scholax
+        #mathfont: 
+        fontsize: 13pt
+        geometry:
+            - left=1.5cm
+            - right=1.5cm
+---
+# Exercice 1
+
+On rapelle que la formule de Bayes donne :
+
+$$
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+$$
+
+On sachant que l'on a :
+
+$$
+h_{\theta}(x) = \text{argmin}_{C_j \in Y} \sum_{i=1}^{m}L_j(C_i)p(C_i|x)
+$$
+
+et que $L_j(C_j) = 0$ et $L_j(C_i) = 1$, on peut effectuer le développement suivant :
+
+$$
+\begin{aligned}
+& h_{\theta}(x) = \text{argmin}_{C_j \in Y} \sum_{i=1}^{m}L_j(C_i) \cdot p(C_i|x) \\
+& = \text{argmin}_{C_j \in Y} (\sum_{i=1}^{m}p(C_i|x)) - p(C_j|x) \\
+& = \text{argmin}_{C_j \in Y} (\sum_{i=1}^{m}\frac{p(x|C_i) \cdot p(C_i)}{p(x)}) - p(C_j|x) \\
+& = \text{argmin}_{C_j \in Y} (\frac{1}{p(x)}\sum_{i=1}^{m}p(x|C_i) \cdot p(C_i)) - p(C_j|x) \\
+& = \text{argmin}_{C_j \in Y} \frac{1}{p(x)} \cdot p(x) - p(C_j|x) \\
+& = \text{argmax}_{C_j \in Y} p(C_j|x) \\
+& = \text{argmax}_{C_j \in Y} \frac{p(x|C_j) \cdot {p(C_j)}}{p(x)} \\
+& = \text{argmax}_{C_j \in Y} p(x|C_j) \cdot p(C_j)
+\end{aligned}
+$$
